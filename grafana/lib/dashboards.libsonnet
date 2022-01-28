@@ -1,3 +1,3 @@
 {
-    system:: import 'dashboards/system.libsonnet',
+  system:: import 'dashboards/system.libsonnet',
 }

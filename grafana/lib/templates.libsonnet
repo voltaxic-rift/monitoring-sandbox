@@ -1,3 +1,3 @@
 {
-    entity:: import 'templates/entity.libsonnet',
+  entity:: import 'templates/entity.libsonnet',
 }

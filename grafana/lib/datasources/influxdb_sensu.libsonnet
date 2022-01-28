@@ -1,7 +1,7 @@
 local grr = import 'grizzly/grizzly.libsonnet';
 
-grr.resource.new('Datasource', 'influxdb_sensu')
-  + grr.resource.withSpec({
+grr.resource.new('Datasource', 'influxdb_sensu') +
+grr.resource.withSpec({
   access: 'proxy',
   basicAuth: false,
   basicAuthPassword: '',
