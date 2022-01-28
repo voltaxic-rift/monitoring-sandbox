@@ -12,7 +12,9 @@ end - 4
 
 max_agents_memory = `sh -c "free -m | grep Mem: | awk '{print \\$2}'"`.to_i - 4096 / 1024
 
-MAX_AGENTS = [max_agents_cpu, max_agents_memory].min
+# Agent デフォルト台数: 3
+# `OVERLOAD=1 vagrant up` でバカみたいに VM が立つ
+MAX_AGENTS = ENV['OVERLOAD'] ? [max_agents_cpu, max_agents_memory].min : 3
 
 Vagrant.configure('2') do |config|
     config.vm.box = "almalinux/8"

@@ -23,3 +23,9 @@ systemctl enable --now influxdb
 dnf install -y https://dl.grafana.com/oss/release/grafana-8.3.4-1.x86_64.rpm
 \cp -f /vagrant/grafana.ini /etc/grafana/grafana.ini
 systemctl enable --now grafana-server
+
+# Create InfluxDB Database
+influx -execute 'create database sensu'
+
+# Create Sensu Resources
+sensuctl create -r -f /vagrant/sensu/namespaces/default
