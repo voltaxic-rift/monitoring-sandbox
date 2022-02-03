@@ -7,8 +7,6 @@ vagrant up
 
 # Login to Grafana
 # URL:  http://localhost:3001
-# User: admin
-# Pass: admin
 
 # Create API Key
 # ref. https://grafana.com/docs/grafana/latest/http_api/auth/#create-api-token

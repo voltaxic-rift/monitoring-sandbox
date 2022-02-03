@@ -41,6 +41,7 @@ dnf install -y https://download.copr.fedorainfracloud.org/results/@caddy/caddy/e
 systemctl enable --now caddy
 
 # checksum 検証切らせてくれ頼む
+\cp -f /vagrant/check-disk-usage.yml.tmpl /vagrant/sensu/namespaces/default/checks/check-disk-usage.yml
 sed -ri "s/( +sha512: ).+/\1$(cat /vagrant/sensu/assets/dist/check-disk-usage.tar.gz.sha512)/" /vagrant/sensu/namespaces/default/checks/check-disk-usage.yml
 
 # Create Sensu Resources
