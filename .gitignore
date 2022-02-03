@@ -1,1 +1,3 @@
 .vagrant/
+sensu/assets/dist/*
+!.keep
