@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eux
+
 # Sensu Go Backend
 dnf install -y https://packagecloud.io/sensu/stable/packages/el/8/sensu-go-cli-6.6.4-5671.x86_64.rpm/download.rpm
 dnf install -y https://packagecloud.io/sensu/stable/packages/el/8/sensu-go-backend-6.6.4-5671.x86_64.rpm/download.rpm
@@ -37,6 +39,9 @@ done
 dnf install -y https://download.copr.fedorainfracloud.org/results/@caddy/caddy/epel-8-x86_64/02938531-caddy/caddy-2.4.6-1.el8.x86_64.rpm
 \cp -f /vagrant/Caddyfile /etc/caddy/Caddyfile
 systemctl enable --now caddy
+
+# checksum 検証切らせてくれ頼む
+sed -ri "s/( +sha512: ).+/\1$(cat /vagrant/sensu/assets/dist/check-disk-usage.tar.gz.sha512)/" /vagrant/sensu/namespaces/default/checks/check-disk-usage.yml
 
 # Create Sensu Resources
 sensuctl create -r -f /vagrant/sensu/namespaces/default
