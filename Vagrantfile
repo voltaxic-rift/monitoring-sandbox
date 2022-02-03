@@ -41,7 +41,7 @@ Vagrant.configure('2') do |config|
   (1..MAX_AGENTS).each do |i|
     config.vm.define "agent#{i}" do |n|
       n.vm.hostname = "agent#{i}"
-      n.vm.network 'private_network', ip: "192.168.56.#{i}"
+      n.vm.network 'private_network', ip: "192.168.56.#{i+1}"
       n.vm.provision 'shell', path: 'agent_setup.sh'
     end
   end
