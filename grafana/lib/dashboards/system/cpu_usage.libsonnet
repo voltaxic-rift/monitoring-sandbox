@@ -3,13 +3,12 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 local target(cpu_measurement) = 
   grafana.influxdb.target(
     alias=cpu_measurement,
-    measurement='system_cpu_' + cpu_measurement,
+    measurement='cpu_' + cpu_measurement,
     fill='linear',
   )
   .selectField('value')
   .addConverter(type='mean')
-  .where('sensu_entity_name', '=~', '/^$entity$/', 'AND')
-  .where('cpu', '=', 'cpu-total');
+  .where('sensu_entity_name', '=~', '/^$entity$/', 'AND');
 
 grafana.graphPanel.new(
   title='CPU Usage ($entity)',
@@ -23,7 +22,7 @@ grafana.graphPanel.new(
 .addTarget(target('nice'))
 .addTarget(target('iowait'))
 .addTarget(target('irq'))
-.addTarget(target('sortirq'))
-.addTarget(target('stolen'))
+.addTarget(target('softirq'))
+.addTarget(target('steal'))
 .addTarget(target('guest'))
-.addTarget(target('guest_nice'))
+.addTarget(target('guestnice'))
