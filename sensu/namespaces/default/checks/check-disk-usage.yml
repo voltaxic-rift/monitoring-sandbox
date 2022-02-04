@@ -24,7 +24,7 @@ metadata:
 spec:
   builds:
   - url: http://192.168.56.254/check-disk-usage.tar.gz
-    sha512: 9c90044c2d0c453589c37c6699ca461040e7dbefeffff5c1c9f2c13eea3e050791e798be701ec56155d2b740059e2a3fdb02509f03ca46c938b9104f84d2e2c8
+    sha512: d26272cf5680c872ce9ebd0e10d8698f3a75a81bf838e3bf3b2120ff7c073700592843499fe664ff9396c23d798e4885bfe04fcd44f75af59b938ebb7f62e6a6
     filters:
     - entity.system.os == 'linux'
     - entity.system.arch == 'amd64'

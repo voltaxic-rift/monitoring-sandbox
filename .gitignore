@@ -1,4 +1,3 @@
 .vagrant/
 sensu/assets/dist/*
-sensu/namespaces/default/checks/check-disk-usage.yml
 !.keep
