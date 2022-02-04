@@ -4,7 +4,7 @@ local target(memory_measurement) =
   grafana.influxdb.target(
     alias=memory_measurement,
     measurement=memory_measurement,
-    fill='linear',
+    fill='previous',
   )
   .selectField('value')
   .addConverter(type='mean')
@@ -14,6 +14,14 @@ grafana.graphPanel.new(
   title='Memory Usage ($entity)',
   repeat='entity',
   nullPointMode='null as zero',
+  legend_alignAsTable=true,
+  legend_current=true,
+  legend_avg=true,
+  legend_min=true,
+  legend_max=true,
+  legend_rightSide=true,
+  legend_values=true,
+  format='bytes',
 )
 .addTarget(target('mem_available'))
 .addTarget(target('mem_free'))

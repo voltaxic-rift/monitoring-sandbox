@@ -4,7 +4,7 @@ local target(cpu_measurement) =
   grafana.influxdb.target(
     alias=cpu_measurement,
     measurement='cpu_' + cpu_measurement,
-    fill='linear',
+    fill='previous',
   )
   .selectField('value')
   .addConverter(type='mean')
@@ -15,6 +15,16 @@ grafana.graphPanel.new(
   repeat='entity',
   nullPointMode='null as zero',
   stack=true,
+  legend_alignAsTable=true,
+  legend_current=true,
+  legend_avg=true,
+  legend_min=true,
+  legend_max=true,
+  legend_rightSide=true,
+  legend_values=true,
+  percentage=true,
+  format='percent',
+  max=100,
 )
 .addTarget(target('idle'))
 .addTarget(target('user'))

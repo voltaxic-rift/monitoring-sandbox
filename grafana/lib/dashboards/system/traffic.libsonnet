@@ -4,7 +4,7 @@ local target(traffic_measurement) =
   grafana.influxdb.target(
     alias=traffic_measurement,
     measurement=traffic_measurement,
-    fill='linear',
+    fill='previous',
   )
   .selectField('value')
   .addConverter(type='mean')
@@ -16,6 +16,13 @@ grafana.graphPanel.new(
   title='Traffic ($entity, $interface)',
   repeat='entity',
   nullPointMode='null as zero',
+  legend_alignAsTable=true,
+  legend_current=true,
+  legend_avg=true,
+  legend_min=true,
+  legend_max=true,
+  legend_rightSide=true,
+  legend_values=true,
 )
 .addTarget(target('bytes_recv'))
 .addTarget(target('bytes_sent'))
@@ -24,4 +31,4 @@ grafana.graphPanel.new(
 .addTarget(target('err_in'))
 .addTarget(target('err_out'))
 .addTarget(target('packets_recv'))
-.addTarget(target('packets_out'))
+.addTarget(target('packets_sent'))

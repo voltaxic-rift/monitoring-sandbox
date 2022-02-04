@@ -4,7 +4,7 @@ local target(disk_measurement) =
   grafana.influxdb.target(
     alias=disk_measurement,
     measurement='disk_'+ disk_measurement,
-    fill='linear',
+    fill='previous',
   )
   .selectField('value')
   .addConverter(type='mean')
@@ -15,6 +15,14 @@ grafana.graphPanel.new(
   title='Disk Usage ($entity, $disk)',
   repeat='entity',
   nullPointMode='null as zero',
+  legend_alignAsTable=true,
+  legend_current=true,
+  legend_avg=true,
+  legend_min=true,
+  legend_max=true,
+  legend_rightSide=true,
+  legend_values=true,
+  format='bytes',
 )
 .addTarget(target('critical'))
 .addTarget(target('warning'))
