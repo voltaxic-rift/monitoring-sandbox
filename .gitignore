@@ -1,3 +1,4 @@
 .vagrant/
 sensu/assets/dist/*
 !.keep
+sensu-agent
