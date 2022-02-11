@@ -21,25 +21,6 @@ dnf install -y https://dl.grafana.com/oss/release/grafana-8.3.4-1.x86_64.rpm
 \cp -f /vagrant/grafana.ini /etc/grafana/grafana.ini
 systemctl enable --now grafana-server
 
-# Create InfluxDB Database
-influx -execute 'create database sensu'
-
-# Build Assets
-dnf install -y golang
-for asset_path in `find /vagrant/sensu/assets/src/* -maxdepth 0 -type d`; do
-  pushd $asset_path
-    ASSET_TARBALL=$(basename $asset_path).tar.gz
-    CGO_ENABLED=0 go build -ldflags='-s -w' -o bin/
-    tar -c --mtime='1970-01-01' --owner=0 --group=0 --remove-files bin/ | gzip -n > ../../dist/${ASSET_TARBALL}
-    shasum -a 512 ../../dist/${ASSET_TARBALL} | awk '{print $1}' > ../../dist/${ASSET_TARBALL}.sha512
-  popd
-done
-
-# Hosting Assets
-dnf install -y https://download.copr.fedorainfracloud.org/results/@caddy/caddy/epel-8-x86_64/02938531-caddy/caddy-2.4.6-1.el8.x86_64.rpm
-\cp -f /vagrant/Caddyfile /etc/caddy/Caddyfile
-systemctl enable --now caddy
-
 # Create Sensu Resources
 sensuctl create -r -f /vagrant/sensu/namespaces/default
 

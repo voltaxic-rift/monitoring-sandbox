@@ -1,9 +1,0 @@
----
-type: Handler
-api_version: core/v2
-metadata:
-  name: keepalive
-spec:
-  handlers:
-  - influxdb-handler
-  type: set

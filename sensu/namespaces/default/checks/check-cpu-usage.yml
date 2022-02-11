@@ -5,11 +5,6 @@ metadata:
   name: check-cpu-usage
 spec:
   command: check-cpu-usage -c 95 -w 85
-  output_metric_format: nagios_perfdata
-  pipelines:
-  - api_version: core/v2
-    name: metrics-pipeline
-    type: Pipeline
   runtime_assets:
   - check-cpu-usage
   subscriptions:

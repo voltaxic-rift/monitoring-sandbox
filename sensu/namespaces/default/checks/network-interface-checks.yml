@@ -5,11 +5,6 @@ metadata:
   name: network-interface-checks
 spec:
   command: network-interface-checks
-  output_metric_format: prometheus_text
-  pipelines:
-  - api_version: core/v2
-    name: metrics-pipeline
-    type: Pipeline
   runtime_assets:
   - network-interface-checks
   subscriptions:

@@ -5,11 +5,6 @@ metadata:
   name: check-memory-usage
 spec:
   command: check-memory-usage -c 90 -w 80
-  output_metric_format: nagios_perfdata
-  pipelines:
-  - api_version: core/v2
-    name: metrics-pipeline
-    type: Pipeline
   runtime_assets:
   - check-memory-usage
   subscriptions:
@@ -23,11 +18,6 @@ metadata:
   name: check-swap-usage
 spec:
   command: check-swap-usage -c 10 -w 5
-  output_metric_format: nagios_perfdata
-  pipelines:
-  - api_version: core/v2
-    name: metrics-pipeline
-    type: Pipeline
   runtime_assets:
   - check-memory-usage
   subscriptions:
